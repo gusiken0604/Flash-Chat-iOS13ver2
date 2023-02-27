@@ -12,7 +12,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class RegisterViewController: UIViewController {
-
+    
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
@@ -23,11 +23,9 @@ class RegisterViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 print(error.localizedDescription)
-            } else {
-                self.performSegue(withIdentifier: K.registerSegue, sender: self)
+                return
             }
+            self.performSegue(withIdentifier: K.registerSegue, sender: self)
         }
-        
     }
-    
 }
